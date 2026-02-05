@@ -1,11 +1,12 @@
 /*
- * @Author: taifyang 
+ * @Author: taifyang
  * @Date: 2024-06-12 09:26:41
  * @LastEditTime: 2025-12-16 21:03:12
  * @Description: demo
  */
- 
+
 #include "yolo.h"
+#include <filesystem>
 
 int main(int argc, char* argv[])
 {
@@ -15,7 +16,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 	for(int i=1; i<argc; i++)
-		std::cout << argv[i] << " "; 
+		std::cout << argv[i] << " ";
 	std::cout<< std::endl;
 
 	Backend_Type backend;
@@ -25,6 +26,18 @@ int main(int argc, char* argv[])
 	Model_Type model;
 	std::string model_path = argv[6];
 	std::string images_path = argv[7];
+
+	if (!std::filesystem::exists(model_path))
+	{
+		std::cerr << "Model file does not exist: " << model_path << std::endl;
+		return -1;
+	}
+
+	if (!std::filesystem::exists(images_path))
+	{
+		std::cerr << "Images path does not exist: " << images_path << std::endl;
+		return -1;
+	}
 
 	try
 	{
@@ -42,7 +55,7 @@ int main(int argc, char* argv[])
 
 	std::unique_ptr<YOLO> yolo = CreateFactory::instance().create(backend, task);
 	yolo->init(algo, device, model, model_path);
-	yolo->infer(images_path, false, false, argv);
+	yolo->infer(images_path, false, true, argv);
 	yolo->release();
 	return 0;
 }

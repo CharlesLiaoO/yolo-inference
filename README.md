@@ -1,7 +1,7 @@
 # yolo-inference
 C++ and Python implementations of YOLOv3, YOLOv4, YOLOv5, YOLOv6, YOLOv7, YOLOv8, YOLOv9, YOLOv10, YOLOv11, YOLOv12, YOLOv13, YOLO26 inference.
 
-Supported inference backends include Libtorch/PyTorch, ONNXRuntime, OpenCV, OpenVINO, TensorRT. 
+Supported inference backends include Libtorch/PyTorch, ONNXRuntime, OpenCV, OpenVINO, TensorRT.
 
 Supported task types include Classify, Detect, Segment, Pose, OBB.
 
@@ -15,6 +15,7 @@ Dependencies(tested):
 * [TensorRT](https://developer.nvidia.com/tensorrt/download) version 8.2.1.8/10.6.0.26/10.8.0.43
 * [Torch](https://pytorch.org) version 2.0.0+cu118/2.5.0+cu124/2.7.0+cu128
 
+# C++ test
 You can test C++ code with:
 ```bash
 # Linux
@@ -215,6 +216,7 @@ C++ test in Docker with 25 vCPU Intel(R) Xeon(R) Platinum 8470Q , RTX 5090(32GB)
 | YOLO26n            | OBB              | CPU                | INT8                  | ×        | 104.3ms      | ×       | 33.5ms   | ×        |
 | YOLO26n            | OBB              | GPU                | INT8                  | ×        | 97.1ms       | ×       | ?        | 2.5ms    |
 
+# Python test
 You can test Python code with:
 ```bash
 # Linux
@@ -412,7 +414,7 @@ Python test in Docker with 25 vCPU Intel(R) Xeon(R) Platinum 8470Q , RTX 5090(32
 | YOLO26n            | OBB              | CPU                | INT8                  | ×        | 105.9ms      | ×       | 29.0ms   | ×        |
 | YOLO26n            | OBB              | GPU                | INT8                  | ×        | 107.9ms      | ×       | ?        | 3.2ms    |
 
-
+# Others
 You can download some model weights in: <https://pan.baidu.com/s/1843WW7tNQK1ycqIALje_fA?pwd=adis>
 
 **For your own model, you should transpose output dims such as from 1x84x8400 to 1x8400x84 for YOLOv8, YOLOv9, YOLOv11, YOLOv12, YOLOv13 detection, segmentation, pose and obb.**

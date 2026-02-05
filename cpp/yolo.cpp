@@ -1,5 +1,5 @@
 /*
- * @Author: taifyang 
+ * @Author: taifyang
  * @Date: 2024-06-12 09:26:41
  * @LastEditTime: 2025-12-21 19:38:08
  * @Description: source file for YOLO algorithm
@@ -56,18 +56,18 @@ void YOLO::infer(const std::string file_path, bool save_result, bool show_result
 			pre_process();
 			process();
 			post_process();
-		}	
+		}
 
 		auto start = std::chrono::steady_clock::now();
-		for(int i=0; i<1000; ++i)
+		for(int i=0; i<20; ++i)
 		{
 		 	pre_process();
 		 	process();
 		 	post_process();
-		}		
-		auto end = std::chrono::steady_clock::now();	
-		std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);		
-		std::cout << "avg cost run on 1000 times:" << duration.count() << "ms" << std::endl;
+		}
+		auto end = std::chrono::steady_clock::now();
+		std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
+		std::cout << "avg cost run on 20 times:" << duration.count() << "ms" << std::endl;
 
 		if (save_result)
 		{
@@ -124,11 +124,11 @@ void YOLO::infer(const std::string file_path, bool save_result, bool show_result
 				cv::imshow("result", m_result);
 				cv::waitKey(1);
 			}
-		}	
+		}
 
-		auto end = std::chrono::steady_clock::now();	
-		std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);		
-		std::cout << duration.count() * 1000 << "ms" << std::endl;
+		auto end = std::chrono::steady_clock::now();
+		std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(end - start);
+		std::cout << duration.count() * 20 << "ms" << std::endl;
 		cap.release();
 
 		if (save_result)
@@ -166,7 +166,7 @@ std::unique_ptr<YOLO> CreateFactory::create(const Backend_Type& backend_type, co
 		std::cerr << "algo create failed!" <<std::endl;
 		std::exit(-1);
 	}
-	else 
+	else
 	{
 		return yolo;
 	}
