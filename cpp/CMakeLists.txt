@@ -23,6 +23,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_compile_options(-w)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE "Debug")
 set(BACKEND_LIBS "")
 
